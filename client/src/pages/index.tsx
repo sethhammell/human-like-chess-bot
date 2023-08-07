@@ -1,9 +1,8 @@
 import { useRouter } from "next/router";
 import DifficultyButton from "@components/DifficultyButton";
 import styles from "@styles/Home.module.css";
-import "@styles/globals.css";
 
-const IndexPage = () => {
+const Home = () => {
   const router = useRouter();
 
   const handleStartGame = (difficulty: string) => {
@@ -38,4 +37,4 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
+export default Home;
