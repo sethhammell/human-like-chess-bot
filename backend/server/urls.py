@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from ai_interface.views import welcome
+from .views import base_welcome
 
 urlpatterns = [
-    path("", welcome, name="welcome"),
     path("admin/", admin.site.urls),
-    path("api/", include("ai_interface.urls")),
+    path("", base_welcome, name="base_welcome"),
+    path("ai_interface/", include("ai_interface.urls")),
 ]
