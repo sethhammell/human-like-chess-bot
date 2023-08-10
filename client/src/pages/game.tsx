@@ -20,7 +20,9 @@ interface GameProps {
 }
 
 const Game: React.FC<GameProps> = ({ difficulty }) => {
-  const [game, setGame] = useState(new Chess());
+  const [game, setGame] = useState(
+    new Chess("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1")
+  );
   const [playerTurn, setPlayerTurn] = useState(true);
 
   const maxDepth = DIFFICULTY_MAP[difficulty];

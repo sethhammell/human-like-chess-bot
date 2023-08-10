@@ -1,12 +1,20 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import DifficultyButton from "@components/DifficultyButton";
 import styles from "@styles/Home.module.css";
 
 const Home = () => {
   const router = useRouter();
+  const [selectedDifficulty, setSelectedDifficulty] = useState("");
 
-  const handleStartGame = (difficulty: string) => {
-    router.push(`/game?difficulty=${difficulty}`);
+  const handleSelectDifficulty = (difficulty: string) => {
+    setSelectedDifficulty(difficulty);
+  };
+
+  const handleStartGame = () => {
+    if (selectedDifficulty) {
+      router.push(`/game?difficulty=${selectedDifficulty}`);
+    }
   };
 
   return (
@@ -16,23 +24,33 @@ const Home = () => {
 
       <div className={styles.buttonGroup}>
         <DifficultyButton
+          isSelected={selectedDifficulty === "easy"}
           difficulty="Easy"
           timePerMove="1 second"
-          onClick={() => handleStartGame("easy")}
+          onClick={() => handleSelectDifficulty("easy")}
         />
 
         <DifficultyButton
+          isSelected={selectedDifficulty === "medium"}
           difficulty="Medium"
           timePerMove="10 seconds"
-          onClick={() => handleStartGame("medium")}
+          onClick={() => handleSelectDifficulty("medium")}
         />
 
         <DifficultyButton
+          isSelected={selectedDifficulty === "hard"}
           difficulty="Hard"
           timePerMove="1 minute"
-          onClick={() => handleStartGame("hard")}
+          onClick={() => handleSelectDifficulty("hard")}
         />
       </div>
+      <button
+        className={styles.startButton}
+        onClick={handleStartGame}
+        disabled={!selectedDifficulty}
+      >
+        Start Game
+      </button>
     </div>
   );
 };
