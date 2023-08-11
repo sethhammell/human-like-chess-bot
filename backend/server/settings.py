@@ -25,9 +25,9 @@ dotenv_path = BASE_DIR / ".env"
 load_dotenv(dotenv_path)
 
 SECRET_KEY = os.getenv("SECRET_KEY")
+IS_PRODUCTION = os.getenv("IS_PRODUCTION")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not IS_PRODUCTION
 
 ALLOWED_HOSTS = []
 
