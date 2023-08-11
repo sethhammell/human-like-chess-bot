@@ -16,8 +16,8 @@ python-dotenv==1.0.0
 requests==2.31.0
 sqlparse==0.4.4
 sympy==1.12
-torch==2.0.1
-torchvision==0.15.2
+torch==2.0.1+cpu
+torchvision==0.15.2+cpu
 typing_extensions==4.7.1
 tzdata==2023.3
 urllib3==2.0.4
