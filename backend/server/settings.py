@@ -25,11 +25,12 @@ dotenv_path = BASE_DIR / ".env"
 load_dotenv(dotenv_path)
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-IS_PRODUCTION = os.getenv("IS_PRODUCTION")
+ENVIRONMENT = os.getenv("ENVIRONMENT")
 
-DEBUG = not IS_PRODUCTION
+DEBUG = ENVIRONMENT == "dev"
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
