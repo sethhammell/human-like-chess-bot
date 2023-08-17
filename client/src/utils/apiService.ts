@@ -9,7 +9,6 @@ export async function fetchAiMove(
   try {
     const encodedFEN = encodeURIComponent(fen);
     const url = `${API}/get_move/${encodedFEN}/${maxDepth}/`;
-    console.log(url);
     const response = await fetch(url);
 
     const data = await response.json();
