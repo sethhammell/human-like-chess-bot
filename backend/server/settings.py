@@ -29,8 +29,7 @@ ENVIRONMENT = os.getenv("ENVIRONMENT")
 
 DEBUG = ENVIRONMENT == "dev"
 
-# ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["human-like-chess-bot.sethhammell.repl.co"]
 
 
 # Application definition
@@ -132,4 +131,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://human-like-chess-bot.vercel.app",
 ]
