@@ -8,7 +8,7 @@ export async function fetchAiMove(
 ): Promise<string> {
   try {
     const encodedFEN = encodeURIComponent(fen);
-    const url = `${API}/get_move/${encodedFEN}/${maxDepth}/`;
+    const url = `${API}/ai_interface/get_move/${encodedFEN}/${maxDepth}/`;
     const response = await fetch(url);
 
     const data = await response.json();
