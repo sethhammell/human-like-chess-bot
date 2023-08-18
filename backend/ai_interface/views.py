@@ -34,4 +34,4 @@ def get_move(request, fen, max_depth):
         return HttpResponseBadRequest("Invalid FEN.")
 
     ai_move = get_ai_move(board, max_depth)
-    return JsonResponse({"ai_move": ai_move.uci()})
+    return JsonResponse(ai_move)

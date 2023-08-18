@@ -165,4 +165,8 @@ def get_ai_move(board, max_depth):
             max_eval = eval
             best_move = move
 
-    return best_move
+    return {
+        "move": best_move,
+        "positions_analyzed": predictions,
+        "predicted_wr": max_eval,
+    }

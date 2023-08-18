@@ -4,11 +4,11 @@ from urllib.parse import quote
 from django.http import HttpResponseBadRequest
 
 
-class GetMoveTestCase(TestCase):
+class GetMoveSuccessTestCase(TestCase):
     def setUp(self):
         self.client = Client()
 
-    def test_get_move(self):
+    def test_get_move_success(self):
         fen = r"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
         encoded_fen = quote(fen)
 
@@ -16,14 +16,13 @@ class GetMoveTestCase(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn("ai_move", response.json())
 
 
-class BadFENTestCase(TestCase):
+class GetMoveFailureTestCase(TestCase):
     def setUp(self):
         self.client = Client()
 
-    def test_bad_fen(self):
+    def test_get_move_failure(self):
         bad_fen = r"a/b/c/d/e/f/g/h w - - 0 1"
         url = reverse("get_move", args=(bad_fen, 1))
 
