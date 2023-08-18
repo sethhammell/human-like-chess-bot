@@ -5,6 +5,7 @@ import { Move, Square } from "chess.js";
 import { Chessboard } from "react-chessboard";
 import { DIFFICULTY_MAP, Difficulty } from "@utils/difficultyUtils";
 import { fetchAiMove } from "@utils/apiService";
+import MoveData from "@utils/moveData";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const difficulty = context.query.difficulty || "easy";
@@ -22,15 +23,21 @@ interface GameProps {
 const Game: React.FC<GameProps> = ({ difficulty }) => {
   const [game, setGame] = useState(new Chess());
   const [playerTurn, setPlayerTurn] = useState(true);
+  const [positionsAnalyzed, setPositionsAnalyzed] = useState(0);
+  const [predictedWr, setPredictedWr] = useState(-1);
 
   const maxDepth = DIFFICULTY_MAP[difficulty];
 
   useEffect(() => {
     if (!playerTurn) {
-      fetchAiMove(game.fen(), maxDepth).then((moveUCI) => {
+      fetchAiMove(game.fen(), maxDepth).then((moveData: MoveData | null) => {
         try {
-          const move = game.move(moveUCI);
+          if (!moveData) throw new Error("Error in move data");
+
+          const move = game.move(moveData.moveUci);
           makeMove(move);
+          setPositionsAnalyzed(moveData.positionsAnalyzed);
+          setPredictedWr(moveData.predictedWr);
           setPlayerTurn(true);
         } catch (error) {
           console.error("Error interpreting move:", error);

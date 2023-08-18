@@ -166,7 +166,7 @@ def get_ai_move(board, max_depth):
             best_move = move
 
     return {
-        "move": best_move,
+        "move": best_move.uci(),
         "positions_analyzed": predictions,
         "predicted_wr": max_eval,
     }
