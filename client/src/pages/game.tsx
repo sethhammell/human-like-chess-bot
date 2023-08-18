@@ -20,9 +20,7 @@ interface GameProps {
 }
 
 const Game: React.FC<GameProps> = ({ difficulty }) => {
-  const [game, setGame] = useState(
-    new Chess()
-  );
+  const [game, setGame] = useState(new Chess());
   const [playerTurn, setPlayerTurn] = useState(true);
 
   const maxDepth = DIFFICULTY_MAP[difficulty];
@@ -68,7 +66,7 @@ const Game: React.FC<GameProps> = ({ difficulty }) => {
 
     if (!move) return false;
 
-    setPlayerTurn(false); // Switch turn to AI after player makes a move.
+    setPlayerTurn(false);
     return true;
   }
 
