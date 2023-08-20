@@ -1,5 +1,5 @@
 export default interface MoveData {
-  moveUci: string;
-  positionsAnalyzed: number;
-  predictedWr: number;
+  move_uci: string;
+  positions_analyzed: number;
+  predicted_wr: number;
 }

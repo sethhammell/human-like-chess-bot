@@ -34,10 +34,10 @@ const Game: React.FC<GameProps> = ({ difficulty }) => {
         try {
           if (!moveData) throw new Error("Error in move data");
 
-          const move = game.move(moveData.moveUci);
+          const move = game.move(moveData.move_uci);
           makeMove(move);
-          setPositionsAnalyzed(moveData.positionsAnalyzed);
-          setPredictedWr(moveData.predictedWr);
+          setPositionsAnalyzed(moveData.positions_analyzed);
+          setPredictedWr(moveData.predicted_wr);
           setPlayerTurn(true);
         } catch (error) {
           console.error("Error interpreting move:", error);
