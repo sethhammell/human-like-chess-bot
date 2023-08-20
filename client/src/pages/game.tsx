@@ -6,6 +6,8 @@ import { Chessboard } from "react-chessboard";
 import { DIFFICULTY_MAP, Difficulty } from "@utils/difficultyUtils";
 import { fetchAiMove } from "@utils/apiService";
 import MoveData from "@utils/moveData";
+import GameDetails from "@components/GameDetails";
+import GameControls from "@components/GameControls";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const difficulty = context.query.difficulty || "easy";
@@ -24,7 +26,7 @@ const Game: React.FC<GameProps> = ({ difficulty }) => {
   const [game, setGame] = useState(new Chess());
   const [playerTurn, setPlayerTurn] = useState(true);
   const [positionsAnalyzed, setPositionsAnalyzed] = useState(0);
-  const [predictedWr, setPredictedWr] = useState(-1);
+  const [predictedWinRate, setPredictedWinRate] = useState(-1);
 
   const maxDepth = DIFFICULTY_MAP[difficulty];
 
@@ -37,10 +39,10 @@ const Game: React.FC<GameProps> = ({ difficulty }) => {
           const move = game.move(moveData.move_uci);
           makeMove(move);
           setPositionsAnalyzed(moveData.positions_analyzed);
-          setPredictedWr(moveData.predicted_wr);
+          setPredictedWinRate(moveData.predicted_wr);
           setPlayerTurn(true);
         } catch (error) {
-          console.error("Error interpreting move:", error);
+          console.error("Error interpreting move: ", error);
         }
       });
     }
@@ -79,11 +81,20 @@ const Game: React.FC<GameProps> = ({ difficulty }) => {
 
   return (
     <div>
+      <GameDetails
+        difficulty={difficulty}
+        positionsAnalyzed={positionsAnalyzed}
+        aiPredictedWinRate={predictedWinRate}
+      />
       <Chessboard
         position={game.fen()}
         onPieceDrop={onDrop}
         snapToCursor={true}
         boardWidth={700}
+      />
+      <GameControls
+        isPlayerTurn={true}
+        onResign={() => console.log("Resigned")}
       />
     </div>
   );
