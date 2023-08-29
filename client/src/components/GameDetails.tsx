@@ -1,7 +1,7 @@
 import { Difficulty } from "@utils/difficultyUtils";
 import { capitalizeFirstLetter } from "@utils/helpers";
 import React from "react";
-import Card from "./Card";
+import Card from "@components/Card";
 
 interface GameDetailsProps {
   difficulty: Difficulty;
@@ -16,7 +16,7 @@ const GameDetails: React.FC<GameDetailsProps> = ({
 }) => {
   return (
     <div>
-      <Card width="w-1/6">
+      <Card width="w-[300px]">
         <h2 className="text-xl font-semibold mb-4 text-gray-200">
           Difficulty: {capitalizeFirstLetter(difficulty)}
         </h2>

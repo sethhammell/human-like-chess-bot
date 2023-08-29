@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card";
+import Card from "@components/Card";
 
 interface GameControlsProps {
   isPlayerTurn: boolean;
@@ -11,8 +11,8 @@ const GameControls: React.FC<GameControlsProps> = ({
   onResign,
 }) => {
   return (
-    <div className="rounded-lg shadow-custom p-6 bg-darkGray">
-      <Card width="w-1/5">
+    <div className="rounded-lg shadow-custom bg-darkGray">
+      <Card width="w-[250px]">
         <h2 className="text-xl font-semibold mb-4 text-gray-200">
           {isPlayerTurn ? "Your Turn" : "Waiting for Opponent"}
         </h2>

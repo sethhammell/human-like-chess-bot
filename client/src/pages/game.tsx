@@ -80,22 +80,28 @@ const Game: React.FC<GameProps> = ({ difficulty }) => {
   }
 
   return (
-    <div>
-      <GameDetails
-        difficulty={difficulty}
-        positionsAnalyzed={positionsAnalyzed}
-        aiPredictedWinRate={predictedWinRate}
-      />
-      <Chessboard
-        position={game.fen()}
-        onPieceDrop={onDrop}
-        snapToCursor={true}
-        boardWidth={700}
-      />
-      <GameControls
-        isPlayerTurn={true}
-        onResign={() => console.log("Resigned")}
-      />
+    <div className="flex h-screen px-4 justify-center items-center">
+      <div className="items-center self-center">
+        <GameDetails
+          difficulty={difficulty}
+          positionsAnalyzed={positionsAnalyzed}
+          aiPredictedWinRate={predictedWinRate}
+        />
+      </div>
+      <div className="mx-16 items-center self-center">
+        <Chessboard
+          position={game.fen()}
+          onPieceDrop={onDrop}
+          snapToCursor={true}
+          boardWidth={750}
+        />
+      </div>
+      <div className="items-center self-center">
+        <GameControls
+          isPlayerTurn={true}
+          onResign={() => console.log("Resigned")}
+        />
+      </div>
     </div>
   );
 };
